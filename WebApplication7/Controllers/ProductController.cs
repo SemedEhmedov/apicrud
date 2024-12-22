@@ -29,6 +29,7 @@ namespace WebApplication7.Controllers
             var category = _context.Products.FirstOrDefault(x => x.Id == id);
             return category == null ? NotFound() : Ok(category);
         }
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_context.Products.ToList());
@@ -53,6 +54,7 @@ namespace WebApplication7.Controllers
             _context.SaveChanges();
             return StatusCode(StatusCodes.Status204NoContent, product);
         }
+        [HttpPut]
         public async Task<IActionResult> Update(UpdateProductDTO product)
         {
             var oldProduct= _context.Products.AsNoTracking().FirstOrDefault(x=>x.Id==product.Id);
